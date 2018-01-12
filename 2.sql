@@ -1,2 +1,6 @@
-select  sum(salary) from developers 
-where id_dev in (select developer_projects.id_dev from developer_projects where developer_projects.id_project =5 );
+SELECT developer_projects.id_project AS projectID, SUM(developers.salary) AS salariesSUM
+FROM developer_projects
+INNER JOIN developers ON developers.id_dev = developer_projects.id_dev
+GROUP BY id_project
+ORDER BY salariesSUM DESC
+LIMIT 1; 
